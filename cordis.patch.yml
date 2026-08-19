@@ -1,0 +1,10 @@
+# suanzhang-dsh bundle patch — 在 profile 的 cordis.patch.yml 中 insert 引用即可挂载。
+# 安装后在本会话 profile 的 cordis.patch.yml 顶部加：
+#
+#   - insert:
+#       - id: suanzhang
+#         name: suanzhang-dsh
+#
+- insert:
+    - id: suanzhang
+      name: suanzhang-dsh
