@@ -34,14 +34,11 @@ A clean trading-terminal style (think Bloomberg):
 - **Click any step row**: auto-jumps to the "Trajectory" tab and highlights that step.
 - **Auto-synced official pricing**: follows the DeepSeek official price page; price changes take effect automatically.
 
-## Screenshots
+## Screenshot
 
-| | |
-|---|---|
-| Sidebar balance & today's spend | 算账 tab · quote bar + cost table |
-| ![sidebar](docs/sidebar.png) | ![tab](docs/tab.png) |
-| Analysis · per-model/tool bars + forecast | Cross-session / per-day summary |
-| ![analysis](docs/analysis.png) | ![summary](docs/summary.png) |
+![suanzhang UI](docs/suanzhang.png)
+
+> Sidebar balance & today's spend · 算账 tab quote bar + cost table · Analysis bars + cost forecast
 
 ## Requirements
 
