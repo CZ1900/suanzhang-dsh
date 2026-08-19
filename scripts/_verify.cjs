@@ -18,8 +18,8 @@ try {
   const id = 'suanzhang-dsh';
   console.log('registered:', factories.has(id));
   const factory = factories.get(id);
-  const module = { exports: {} };
-  const exports = factory(req, module, module.exports);
+  // 真实加载器只传一个 require 参数（materialize: registered(this.makeRequire(edges))）
+  const exports = factory(req);
   console.log('exports keys:', Object.keys(exports));
   console.log('typeof apply:', typeof exports.apply);
   console.log('name:', exports.name);

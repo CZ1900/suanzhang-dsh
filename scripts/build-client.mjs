@@ -25,7 +25,11 @@ const code = readFileSync(tmp, 'utf8');
 const out =
   'window.__ModuleLoader__.load({\n' +
   '  id: "suanzhang-dsh",\n' +
-  '  factory: function (require, module, exports) {\n' +
+  '  factory: function (require) {\n' +
+  // dsh 的加载器只传一个 require 参数（module/exports 均为 undefined），
+  // factory 必须自建 module 对象并用 return 返回 exports（对齐官方插件写法）。
+  '    var module = { exports: {} };\n' +
+  '    var exports = module.exports;\n' +
   code +
   '\n    return module.exports;\n' +
   '  }\n' +

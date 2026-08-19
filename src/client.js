@@ -892,8 +892,8 @@ export function apply(ctx) {
     slots.register(
       {
         name: "sidebar.footer.action",
-        id: "cordis-panel",
-        order: 0,
+        id: "suanzhang",
+        order: 10,
       },
       (props) => h(SidebarBalance, props),
     ),
