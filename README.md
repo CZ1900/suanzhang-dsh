@@ -22,7 +22,7 @@
 | 余额还剩多少 | 侧边栏常驻显示，刷新/自动更新 |
 | 今天花了多少 | 同样在侧边栏，一眼看到 |
 | 每一步花了多少人民币 | 「算账」页签按步骤列出费用 |
-| 钱花在哪了 | 按模型、按工具、按天全部可视化 |
+| 钱花在哪了 | 按模型、按工具、按天、按会话（成本≈交付物）全部可视化 |
 | 再聊下去要花多少 | 成本预测：平均每步 × 步数 |
 
 ## 长什么样？
@@ -45,6 +45,15 @@
 - 一台装了 DeepSeek Harness 的电脑（`dsh web` 能打开）。
 - 一个你自己的 DeepSeek API Key（在 Harness 设置里配好）。
 - 网络（查询余额和官方价需要联网）。
+
+## 前置要求与依赖坑
+
+- **Node ≥ 22**：本插件用到较新的语法与 API，低于 22 会报语法错误。用 `node -v` 确认。
+- **Git 必须可用**：方式一通过 `pnpm add <git 地址>` 安装，本机需有 git 且能访问 github.com。
+  - 公司网络 / 代理 / 防火墙可能拦截 github → 改用「方式二：本地复制」最稳。
+  - 若曾遇到 git 凭据管理器报错（`credential.helper` 指向的二进制不存在），请检查全局 git 配置：
+    `git config --global credential.helper` 应指向真实存在的 `git-credential-manager.exe`（如 `/c/Program Files/Git/mingw64/bin/git-credential-manager.exe`），否则克隆/推送会失败。
+- **DeepSeek API Key**：必须在 Harness 设置里配好（默认读 `DEEPSEEK_API_KEY`；若在 `llm-deepseek` 里改了 `apiKeyEnv` / `baseURL`，插件会自动跟随）。没配 Key 时余额栏会提示「未配置 API Key」，但费用汇总 / 计价仍可用。
 
 ## 怎么安装？
 
@@ -79,7 +88,7 @@ cp -r /path/to/suanzhang-dsh node_modules/
 
 | 动作 | 数据去哪 | 是否上传 |
 |---|---|---|
-| 查余额 | `GET https://api.deepseek.com/user/balance`（带你的 Key） | 只发给 DeepSeek 官方 |
+| 查余额 | `GET https://api.deepseek.com/user/balance`（带你的 Key） | 只发给 DeepSeek 官方；Key 以**只读**方式用于这一次请求，**不落地、不打印、不进日志、不进截图**；任何返回前端的信息都会先剔除 Key |
 | 抓官方价 | `https://api-docs.deepseek.com` 公开页面 | 无鉴权，只读 |
 | 算费用/汇总 | 本地读取你的会话日志 | 不出本机 |
 | 显示/排序/图表 | 浏览器本地计算 | 不出本机 |
@@ -94,6 +103,15 @@ cp -r /path/to/suanzhang-dsh node_modules/
 
 **问：支持哪些模型？**
 答：DeepSeek V4-Flash / V4-Pro（含峰谷计价），以及 deepseek-chat / deepseek-reasoner。其他模型会显示「未计价」。
+
+**问：装完侧边栏 / 「算账」页签没出现？**
+答：① 确认 `cordis.patch.yml` 里加了那两行 `insert`（`id: suanzhang` / `name: suanzhang-dsh`）；② 重启 `dsh web` 并刷新页面；③ 确认改的是你实际启动的那个 profile 下的 patch 文件。
+
+**问：余额显示「未配置 API Key」或查询失败？**
+答：去 Harness 设置确认 DeepSeek API Key 已配（对应 `llm-deepseek.apiKeyEnv`）。Key 仅用于余额查询，不用于任何计费计算。
+
+**问：`pnpm add` 安装报错（git / 网络 / 凭据）？**
+答：方式一需要本机 git 且能访问 github。公司代理 / 防火墙常拦截 → 直接下载仓库 zip 或用「方式二：本地复制」最稳；若报 git 凭据管理器相关错误，见上方「前置要求与依赖坑」。
 
 ## 给开发者的快速指引
 

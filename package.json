@@ -5,6 +5,10 @@
   "license": "MIT",
   "type": "module",
   "main": "./lib/index.js",
+  "scripts": {
+    "test": "node tests/pricing.test.mjs",
+    "lint": "node --check lib/index.js && node --check lib/client.js && node --check lib/pricing.js"
+  },
   "exports": {
     ".": {
       "types": "./lib/types/index.d.ts",
