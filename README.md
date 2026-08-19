@@ -36,12 +36,9 @@
 
 ## 界面预览
 
-| | |
-|---|---|
-| 侧边栏余额 & 今日消费 | 算账页签 · 行情栏 + 步骤费用表 |
-| ![sidebar](docs/sidebar.png) | ![tab](docs/tab.png) |
-| 分析区 · 按模型/按工具条形图 + 成本预测 | 跨会话 / 跨天汇总 |
-| ![analysis](docs/analysis.png) | ![summary](docs/summary.png) |
+![suanzhang 界面预览](docs/suanzhang.png)
+
+> 侧边栏余额 & 今日消费 · 算账页签行情栏 + 步骤费用表 · 分析区条形图 + 成本预测
 
 ## 装它要什么？
 
