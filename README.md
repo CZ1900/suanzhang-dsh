@@ -2,6 +2,8 @@
 
 > 在 DeepSeek Harness（dsh）里装一个「算账」小助手：你的余额、今天花了多少、每一步模型调用花了多少钱——全部清清楚楚，不用再猜。
 
+[English](./README.en.md)
+
 ---
 
 ## 为什么要装它？
@@ -32,6 +34,15 @@
 - **点击任意步骤行**：自动跳到「轨迹」页签并高亮那一步，想看细节不用翻。
 - **官方价自动同步**：计价跟着 DeepSeek 官方页走，官方调价自动生效，不用手动改。
 
+## 界面预览
+
+| | |
+|---|---|
+| 侧边栏余额 & 今日消费 | 算账页签 · 行情栏 + 步骤费用表 |
+| ![sidebar](docs/sidebar.png) | ![tab](docs/tab.png) |
+| 分析区 · 按模型/按工具条形图 + 成本预测 | 跨会话 / 跨天汇总 |
+| ![analysis](docs/analysis.png) | ![summary](docs/summary.png) |
+
 ## 装它要什么？
 
 - 一台装了 DeepSeek Harness 的电脑（`dsh web` 能打开）。
@@ -43,7 +54,7 @@
 ### 方式一：GitHub 安装（推荐）
 
 ```bash
-pnpm add https://github.com/你的用户名/suanzhang-dsh.git
+pnpm add https://github.com/CZ1900/suanzhang-dsh.git
 ```
 
 然后编辑 Harness profile 下的 `cordis.patch.yml`，在顶部加上：
@@ -67,14 +78,7 @@ cp -r /path/to/suanzhang-dsh node_modules/
 
 然后同样在 `cordis.patch.yml` 里加上面的 insert 两行，重启即可。
 
-## 会不会扣别人的钱？会不会偷数据？
-
-**两个「放心」：**
-
-1. **绝不扣你的钱。** 别人安装使用，走的是**他们自己**的 API Key，所有模型费用记在他们账上，跟你无关。插件不会用你的 Key，也没有任何隐藏调用。
-2. **绝不偷数据。** 插件只做三件事：查你自己的余额、抓 DeepSeek 官方公开计价页、在本地扫你自己的日志算费用。**不收集、不上传任何对话内容**。你的 Key 只在本地使用，发给官方接口时走的是你自己的机器。
-
-## 隐私说明（更严谨地讲）
+## 隐私说明
 
 | 动作 | 数据去哪 | 是否上传 |
 |---|---|---|
@@ -87,9 +91,6 @@ cp -r /path/to/suanzhang-dsh node_modules/
 
 **问：插件运行本身费 token 吗？**
 答：零。插件全程不调用任何模型，纯本地计算 + 两个免费 HTTP 请求。真正费 token 的是你在 dsh 里的对话，跟这个插件无关。
-
-**问：别人能用我的 Key 吗？**
-答：不能。插件没有内置任何 Key，每个使用者用自己的。除非你主动把 Key 共享给别人，否则没人能借你的额度。
 
 **问：价格会过期吗？**
 答：不会。官方价自动同步，DeepSeek 调价后插件会自动跟着更新；万一抓取失败，会回退到内置价，不影响使用。
