@@ -1,0 +1,43 @@
+{
+  "name": "suanzhang-dsh",
+  "version": "1.0.0",
+  "description": "算账 (suanzhang) — DeepSeek Harness 计费插件：侧边栏余额/今日消费、算账页签按步骤费用（交易终端风格）、官方价自动同步、跨会话跨天汇总。",
+  "license": "MIT",
+  "type": "module",
+  "main": "./lib/index.js",
+  "exports": {
+    ".": {
+      "types": "./lib/types/index.d.ts",
+      "default": "./lib/index.js"
+    },
+    "./client": {
+      "types": "./lib/types/client.d.ts",
+      "default": "./lib/client.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "keywords": [
+    "deepseek-harness",
+    "dsh",
+    "plugin",
+    "billing",
+    "cost",
+    "suanzhang"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": ">=0.1.0",
+    "@deepseek-ai/dsh-client-connection": ">=0.1.0",
+    "@deepseek-ai/dsh-credentials": ">=0.1.0",
+    "@deepseek-ai/dsh-session-query": ">=0.1.0",
+    "@deepseek-ai/dsh-settings": ">=0.1.0",
+    "@deepseek-ai/dsh-subprocess": ">=0.1.0"
+  }
+}
