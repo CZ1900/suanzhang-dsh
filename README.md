@@ -98,7 +98,7 @@ cp -r /path/to/suanzhang-dsh node_modules/
 ## 给开发者的快速指引
 
 - 代码结构：`lib/index.js`（Host：余额/计价/汇总/今日 四个 RPC）、`lib/client.js`（浏览器端 UI）。
-- 关键参数（硬编码在 `lib/index.js`）：API Key 引用默认 `DEEPSEEK_API_KEY`、baseURL 默认 `https://api.deepseek.com`、高峰时段 9:00–14:00、低余额阈值 ¥20。
+- 关键参数（硬编码在 `lib/index.js`）：API Key 引用默认 `DEEPSEEK_API_KEY`、baseURL 默认 `https://api.deepseek.com`、高峰时段 9:00–12:00 与 14:00–18:00（北京时间，其余为空闲时段）、低余额阈值 ¥20。
 - 想改轮询频率：`lib/client.js` 里 `60000`（毫秒）改大即可。
 
 ## License
